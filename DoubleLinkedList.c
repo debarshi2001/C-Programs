@@ -118,31 +118,26 @@ int main()
 
 int Createlist()
 {
-    int c,i=1;
-    head=0;
-    struct node *newnode;
-    while (c!=0)
-    {
-        newnode=(struct node*)malloc(sizeof(struct node));
-        printf("Enter data to the node %d:", i);
+    int n,i=1;
+    struct node *newnode,*temp;
+    newnode=(struct node *)malloc(sizeof(struct node));
+    printf("Enter the no. of nodes you want\n");
+    scanf("%d",&n);
+    printf("Enter data to the node %d: ", i);
+    scanf("%d",&newnode->data);
+    newnode->prev=NULL;
+    newnode->next=NULL;
+    head=newnode;
+    temp=newnode;
+    for(i=2;i<=n;i++){
+        newnode=(struct node *)malloc(sizeof(struct node));
+        printf("Enter data to the node %d: ", i);
         scanf("%d",&newnode->data);
-        newnode->next=0;
-        newnode->prev=0;
-        if(head==0)
-        {
-            head=tail=newnode;
-        }
-        else
-        {
-            tail->next=newnode;
-            newnode->prev=tail;
-            tail=newnode;
-        }
-        i++;
-        printf("PRESS 1 TO ENTER MORE DATA:");
-        scanf("%d",&c);
+        newnode->next=NULL;
+        newnode->prev=temp;
+        temp->next=newnode;
+        temp=temp->next;
     }
-    
 }
 int Display()
 {
@@ -154,7 +149,7 @@ int Display()
         printf("%d ",temp->data);
         temp=temp->next;
     }
-    printf("\nThe Length is-_>%d",getCountList());
+    printf("\nThe Length is-_>%d\n",getCountList());
     getch();
     
 }
